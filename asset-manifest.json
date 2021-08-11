@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/merchandise-store/static/css/main.33ca701a.chunk.css",
+    "main.js": "/merchandise-store/static/js/main.711a9a31.chunk.js",
+    "main.js.map": "/merchandise-store/static/js/main.711a9a31.chunk.js.map",
+    "runtime-main.js": "/merchandise-store/static/js/runtime-main.91a7fc2d.js",
+    "runtime-main.js.map": "/merchandise-store/static/js/runtime-main.91a7fc2d.js.map",
+    "static/js/2.2d4a44f5.chunk.js": "/merchandise-store/static/js/2.2d4a44f5.chunk.js",
+    "static/js/2.2d4a44f5.chunk.js.map": "/merchandise-store/static/js/2.2d4a44f5.chunk.js.map",
+    "index.html": "/merchandise-store/index.html",
+    "static/css/main.33ca701a.chunk.css.map": "/merchandise-store/static/css/main.33ca701a.chunk.css.map",
+    "static/js/2.2d4a44f5.chunk.js.LICENSE.txt": "/merchandise-store/static/js/2.2d4a44f5.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/merchandise-store/static/media/banner.fe10c5b4.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.91a7fc2d.js",
+    "static/js/2.2d4a44f5.chunk.js",
+    "static/css/main.33ca701a.chunk.css",
+    "static/js/main.711a9a31.chunk.js"
+  ]
+}
