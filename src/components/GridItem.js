@@ -76,8 +76,9 @@ export default function GridItem({ product }) {
       }
     });
     console.log("DataLayerAddToCart injected in GridItem.js")
-};
+  };
 
+  // Fix document location /merchandise-store
   const dataLayerProductClick = (product, navigateUrl) => {
     if (typeof window !== 'undefined'){
       window.dataLayer.push({ ecommerce: null });
@@ -105,8 +106,7 @@ export default function GridItem({ product }) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={(e) => {history.push(navigateUrl, { category: product.category });
-        dataLayerProductClick(product, navigateUrl)}}>
+      <CardActionArea onClick={(e) => history.push(navigateUrl, { category: product.category })}>
         <CardMedia className={classes.media} image={product.image} title={product.title} alt={product.title} />
         <CardContent>
           <Typography className={classes.title} variant="subtitle1">
