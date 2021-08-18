@@ -78,7 +78,6 @@ export default function GridItem({ product }) {
     console.log("DataLayerAddToCart injected in GridItem.js")
   };
 
-  // Fix document location /merchandise-store
   const dataLayerProductClick = (product, navigateUrl) => {
     if (typeof window !== 'undefined'){
       window.dataLayer.push({ ecommerce: null });

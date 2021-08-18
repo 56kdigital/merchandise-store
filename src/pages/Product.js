@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
   },
 }));
+
 function useProductData(productId, category) {
   const { response: product, loading: productLoading } = useProduct(productId);
   const { response: products, loading: productsLoading } = useProductsWithCategory(category);
@@ -65,6 +66,7 @@ export default function Product() {
   const { product, products, loading } = useProductData(productId, category);
   const classes = useStyles();
   const cart = React.useContext(CartContext);
+  const detailImpressionFired = useRef(false);
 
   const addCart = (e) => {
     e.stopPropagation();
@@ -85,10 +87,10 @@ export default function Product() {
         title: document.title
       });
     }
-    console.log("DataLayerPageImpression injected in Home.js")
+    console.log("DataLayerPageImpression injected in Product.js")
   }
 
-  const dataLayerDetailImpression = ({ product }) => {
+  const DataLayerDetailImpression = ({ product }) => {
     if (typeof window !== 'undefined'){
       window.dataLayer.push({ ecommerce: null });
       window.dataLayer.push({
@@ -104,6 +106,7 @@ export default function Product() {
       });
     }
       console.log("DataLayerDetailImpression injected in Product.js")
+      return detailImpressionFired.current = true;
   }
 
   const dataLayerAddToCart = (product) => {
@@ -171,6 +174,7 @@ export default function Product() {
       <Container maxWidth={false}>
         <ProductSuggestions products={products.filter(({ id }) => id !== product.id)} />
       </Container>
+      {product !== null && detailImpressionFired.current === false && <DataLayerDetailImpression product={product}/> }
     </Container>
   );
 }

@@ -42,7 +42,7 @@ export default function ProductSuggestions({ products }) {
   return (
     <div className={classes.container}>
       {products.map((product) => (
-        <Grid key={product.id} container item xs={4} spacing={1}>
+        <Grid key={product.id} container item xs={12} sm={6} md={4} lg={4}>
           <GridItem key={product.id} product={product} />
         </Grid>
       ))}

@@ -41,9 +41,9 @@ export default function ProductGrid({ products }) {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={4}>
         {products.map((product) => (
-          <Grid key={product.id} item xs={4}>
+          <Grid key={product.id} item xs={12} sm={6} md={4} lg={4}>
             <GridItem product={product} />
           </Grid>
         ))}
