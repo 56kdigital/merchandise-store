@@ -18,24 +18,28 @@ export default function Menu() {
         <Tab
           label="men's clothing"
           value="men's clothing"
+          key="men's clothing"
           component={Link}
           to={{ pathname: "/men's clothing", state: { category: "men's clothing" } }}
         />
         <Tab
           label="jewelery"
           value="jewelery"
+          key="jewelery"
           component={Link}
           to={{ pathname: "/jewelery", state: { category: "jewelery" } }}
         />
         <Tab
           label="electronics"
           value="electronics"
+          key="electronics"
           component={Link}
           to={{ pathname: "/electronics", state: { category: "electronics" } }}
         />
         <Tab
           label="women's clothing"
           value="women's clothing"
+          key="women's clothing"
           component={Link}
           to={{ pathname: "/women's clothing", state: { category: "women's clothing" } }}
         />

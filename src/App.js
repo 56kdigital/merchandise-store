@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { amber, grey } from "@material-ui/core/colors";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { CartProvider } from "./context/cart";
 import Navbar from "./components/Navbar";
 import Menu from "./components/Menu";
@@ -22,7 +22,7 @@ const tagManagerArgs = {
 TagManager.initialize(tagManagerArgs)
 
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: amber[300],
@@ -61,6 +61,7 @@ function App() {
     }),
     [cart]
   );
+
   return (
     <div className="App">
       <Router basename={process.env.PUBLIC_URL}>
@@ -71,9 +72,6 @@ function App() {
             <Switch>
               <Route exact path="/checkout">
                 <Checkout />
-              </Route>
-              <Route exact path="/thankyou">
-                <ThankYou />
               </Route>
               <Route path="/:category/:productId">
                 <Product />

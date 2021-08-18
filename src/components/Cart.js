@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 function CartItem({ product }) {
   const classes = useStyles();
   return (
@@ -81,7 +82,7 @@ function CartList({ products, cart, handleClose, clearAll }) {
   if (products.length === 0)
     return (
       <Typography variant="h6">
-        Your cart is empty, continue shopping at <a href="/">{ document.location.hostname }</a>
+        Your cart is empty, continue shopping at <a href="/">{ document.location.origin }</a>
       </Typography>
     );
   const updatedProducts = products.map((product) => {

@@ -1,6 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
+import { CardMedia } from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Typography from "@material-ui/core/Typography";
@@ -53,13 +54,60 @@ export default function GridItem({ product }) {
 
   const addCart = (e) => {
     e.preventDefault();
+    console.log(e.target)
     cart.addItem(product.id);
   };
 
+  const dataLayerAddToCart = (product) => {
+    window.dataLayer.push({ ecommerce: null });  
+    window.dataLayer.push({
+      'event': 'addToCart',
+      'ecommerce': {
+        'currencyCode': 'USD',
+        'add': {                                
+          'products': [{                        
+            'name': product.title,
+            'id': product.id,
+            'price': product.price,
+            'category': product.category,
+            'quantity': product.quantity
+          }]
+        }
+      }
+    });
+    console.log("DataLayerAddToCart injected in GridItem.js")
+};
+
+  const dataLayerProductClick = (product, navigateUrl) => {
+    if (typeof window !== 'undefined'){
+      window.dataLayer.push({ ecommerce: null });
+      window.dataLayer.push({
+        'event': 'productClick',
+        'ecommerce': {
+          'click': {
+            'actionField': {'list': 'Category Page'},
+            'products': [{
+              'name': product.title,
+              'id': product.id,
+              'price': product.price,
+              'category': product.category,
+              'quantity': product.quantity
+            }]
+          }
+        },
+        'eventCallback': function() {
+          document.location = navigateUrl
+        }
+      });
+    }
+    console.log("ProductClick injected in GridItem.js")
+  }
+
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={(e) => history.push(navigateUrl, { category: product.category })}>
-        <img className={classes.media} src={product.image} title={product.title} alt={product.title} />
+      <CardActionArea onClick={(e) => {history.push(navigateUrl, { category: product.category });
+        dataLayerProductClick(product, navigateUrl)}}>
+        <CardMedia className={classes.media} image={product.image} title={product.title} alt={product.title} />
         <CardContent>
           <Typography className={classes.title} variant="subtitle1">
             {product.title}
@@ -72,7 +120,8 @@ export default function GridItem({ product }) {
         </CardContent>
       </CardActionArea>
       <Fab color="secondary" aria-label="cart" className={classes.cartButton}>
-        <ShoppingCartIcon onClick={(e) => addCart(e)} />
+        <ShoppingCartIcon onClick={(e) => {addCart(e);
+          dataLayerAddToCart(product)}} />
       </Fab>
     </Card>
   );

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -16,9 +16,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Loading({ text = "Loading" }) {
   const classes = useStyles();
-  const [content, setContent] = React.useState(text);
+  const [content, setContent] = useState(text);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const id = window.setInterval(() => {
       setContent((content) => {
         return content === `${text}...` ? text : `${content}.`;

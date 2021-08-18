@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect} from "react";
 import axios from "axios";
 
 const API = "https://fakestoreapi.com";
@@ -7,7 +7,8 @@ export default function useGetMultuAxios(pathArray, method, bodyArray) {
   const [response, setResponse] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
   const { current: patharr } = React.useRef(pathArray);
-  React.useEffect(() => {
+  
+  useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
     let promiseArray = patharr.map((path) => axios.get(`${API}${path}`));

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -12,7 +12,9 @@ import { useParams } from "react-router-dom";
 import { useProduct, useProductsWithCategory } from "../hooks/useProducts";
 import Loading from "../components/Loading";
 import ProductSuggestions from "../components/ProductSuggestions";
-import CardContext from "../context/cart";
+import CartContext from "../context/cart";
+
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -59,22 +61,76 @@ function useProductData(productId, category) {
 }
 export default function Product() {
 
-  React.useEffect(() => {
-    window.dataLayer.push ({
-      event: 'pageview',
-      url:         document.location.hostname + document.location.pathname + document.location.search,
-      virtualUrlPath:  document.location.pathname + document.location.search,
-      title:           document.title
-      })
-  }, []);
-  
   const { productId, category } = useParams();
   const { product, products, loading } = useProductData(productId, category);
   const classes = useStyles();
-  const { addItem } = React.useContext(CardContext);
+  const cart = React.useContext(CartContext);
+
+  const addCart = (e) => {
+    e.stopPropagation();
+    console.log(e.target)
+    cart.addItem(product.id);
+  };
+
+  useEffect(() => {
+    dataLayerPageImpression()
+  }, []);
+
+  const dataLayerPageImpression = () => {
+    if (typeof window !== 'undefined'){
+      window.dataLayer.push({
+        event: "pageview",
+        url: document.location.origin + document.location.pathname + document.location.search,
+        virtualUrlPath: document.location.pathname + document.location.search,
+        title: document.title
+      });
+    }
+    console.log("DataLayerPageImpression injected in Home.js")
+  }
+
+  const dataLayerDetailImpression = ({ product }) => {
+    if (typeof window !== 'undefined'){
+      window.dataLayer.push({ ecommerce: null });
+      window.dataLayer.push({
+        "ecommerce": {
+          "detail": {
+            "actionField": {"list": "Apparel Gallery"},
+            "products": [{
+              "name": product.title,
+              "category": product.category
+            }]
+          }
+        }
+      });
+    }
+      console.log("DataLayerDetailImpression injected in Product.js")
+  }
+
+  const dataLayerAddToCart = (product) => {
+      window.dataLayer.push({ ecommerce: null });  
+      window.dataLayer.push({
+        'event': 'addToCart',
+        'ecommerce': {
+          'currencyCode': 'USD',
+          'add': {                                
+            'products': [{                        
+              'name': product.title,
+              'id': product.id,
+              'price': product.price,
+              'category': product.category,
+              'quantity': product.quantity
+            }]
+          }
+        }
+      });
+      console.log("DataLayerAddToCart injected in Product.js")
+  };
+
+
   if (loading) {
     return <Loading text={`Fetching your product`} />;
   }
+
   return (
     <Container maxWidth={false}>
       <Paper elevation={3} className={classes.paper}>
@@ -87,12 +143,13 @@ export default function Product() {
               {product.title}
             </Typography>
             <Typography gutterBottom variant="h6" className={classes.price}>
-              $ {product.price} <span className={classes.condition}>(Incuding all taxes)</span>
+              $ {product.price} <span className={classes.condition}>(Incuding taxes)</span>
             </Typography>
             <Button
               variant="contained"
               color="secondary"
-              onClick={(e) => addItem(product.id)}
+              onClick={(e) => {addCart(e);
+                dataLayerAddToCart(product)}}
               className={classes.button}
               startIcon={<ShoppingCartIcon />}
             >

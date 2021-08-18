@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect} from "react";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,12 +16,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ThankYou() {
 
-  React.useEffect(() => {
+  useEffect(() => {
     
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push ({
       event: "pageview",
-      url: document.location.hostname + document.location.pathname + document.location.search,
+      url: document.location.origin + document.location.pathname + document.location.search,
       virtualUrlPath: document.location.pathname + document.location.search,
       title: document.title
       })

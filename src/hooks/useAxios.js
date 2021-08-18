@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect} from "react";
 import axios from "axios";
 
 const API = "https://fakestoreapi.com";
@@ -7,7 +7,7 @@ export default function useAxios(path, method, body) {
   const [response, setResponse] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const abortController = new AbortController();
     const signal = abortController.signal;
 

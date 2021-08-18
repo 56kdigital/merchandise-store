@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 export default function ShippingForm({ state, handleChange }) {
 
-  React.useEffect(() => {
-    window.dataLayer.push ({
-      event: 'pageview',
-      url:         document.location.hostname + document.location.pathname + document.location.search,
-      virtualUrlPath:  document.location.pathname + document.location.search + "/shippingadress",
-      title:           document.title
-      })
+  useEffect(() => {
+    dataLayerPageImpression()
   }, []);
+
+  const dataLayerPageImpression = () => {
+    if (typeof window !== 'undefined'){
+      window.dataLayer.push({
+        event: "pageview",
+        url: document.location.origin + document.location.pathname + document.location.search,
+        virtualUrlPath: document.location.pathname + document.location.search + "/shippingadress",
+        title: document.title
+      });
+    }
+    console.log("DataLayerPageImpression injected in ShippingForm.js")
+  }
 
   const { address, city, zipcode } = state;
   return (

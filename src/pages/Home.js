@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -16,18 +16,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 export default function Home() {
-
-  React.useEffect(() => {
-    window.dataLayer.push ({
-      event: 'pageview',
-      url:         document.location.hostname + document.location.pathname + document.location.search,
-      virtualUrlPath:  document.location.pathname + document.location.search,
-      title:           document.title
-      })
-  }, []);
   
   const classes = useStyles();
   const { response: products, loading } = useProductsWithLimit(5);
+
+  useEffect(() => {
+    dataLayerPageImpression()
+  }, []);
+
+  const dataLayerPageImpression = () => {
+    if (typeof window !== 'undefined'){
+      window.dataLayer.push({
+        event: "pageview",
+        url: document.location.origin + document.location.pathname + document.location.search,
+        virtualUrlPath: document.location.pathname + document.location.search,
+        title: document.title
+      });
+    }
+    console.log("DataLayerPageImpression injected in Home.js")
+  }
+
+
   if (loading) {
     return (
       <>
