@@ -118,6 +118,33 @@ export default function ConfirmDetails({ state }) {
     console.log("DataLayerPageImpression injected in ConfirmDetails.js")
   }
 
+  const DataLayerCheckoutStep = ({ products }) => {
+
+    const productObject = products.map((product) => (
+      {"name": product.title,
+       "id": product.id,
+       "price": product.price,
+       "category": product.category,
+       "quantity": product.quantity,
+      }
+    ))
+
+    if (typeof window !== "undefined"){
+      window.dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+      window.dataLayer.push({
+        "event": "checkout",
+        "ecommerce": {
+          "checkout": {
+            "actionField": {"step": 3},
+            'products': [productObject]
+        }
+      }
+      });
+    }
+    console.log("DataLayerCheckoutStep 3 injected in UserForm.js")
+    return ""
+  }
+
   const { cart } = React.useContext(CartContext);
   const { response: products, loading } = useSelectedProducts(cart);
 

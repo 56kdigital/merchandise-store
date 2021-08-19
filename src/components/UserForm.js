@@ -6,6 +6,7 @@ export default function UserForm({ state, handleChange }) {
 
   useEffect(() => {
     dataLayerPageImpression()
+    dataLayerCheckoutStep()
   }, []);
 
   const dataLayerPageImpression = () => {
@@ -18,6 +19,21 @@ export default function UserForm({ state, handleChange }) {
       });
     }
     console.log("DataLayerPageImpression injected in UserForm.js")
+  }
+
+  const dataLayerCheckoutStep = () => {
+    if (typeof window !== "undefined"){
+      window.dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+      window.dataLayer.push({
+        "event": "checkout",
+        "ecommerce": {
+          "checkout": {
+            "actionField": {"step": 1}
+        }
+      }
+      });
+    }
+    console.log("DataLayerCheckoutStep 1 injected in UserForm.js")
   }
 
   const { firstName, lastName, email } = state;

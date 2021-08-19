@@ -6,6 +6,7 @@ export default function ShippingForm({ state, handleChange }) {
 
   useEffect(() => {
     dataLayerPageImpression()
+    dataLayerCheckoutStep()
   }, []);
 
   const dataLayerPageImpression = () => {
@@ -18,6 +19,21 @@ export default function ShippingForm({ state, handleChange }) {
       });
     }
     console.log("DataLayerPageImpression injected in ShippingForm.js")
+  }
+
+  const dataLayerCheckoutStep = () => {
+    if (typeof window !== "undefined"){
+      window.dataLayer.push({ ecommerce: null });  // Clear the previous ecommerce object.
+      window.dataLayer.push({
+        "event": "checkout",
+        "ecommerce": {
+          "checkout": {
+            "actionField": {"step": 2}
+        }
+      }
+      });
+    }
+    console.log("DataLayerCheckoutStep 2 injected in UserForm.js")
   }
 
   const { address, city, zipcode } = state;

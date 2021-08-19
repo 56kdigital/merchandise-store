@@ -145,7 +145,7 @@ export default function Product() {
             <Typography gutterBottom variant="h5" className={classes.title}>
               {product.title}
             </Typography>
-            <Typography gutterBottom variant="h6" className={classes.price}>
+            <Typography gutterBottom variant="h5" className={classes.price}>
               $ {product.price} <span className={classes.condition}>(Incuding taxes)</span>
             </Typography>
             <Button
@@ -159,7 +159,7 @@ export default function Product() {
               Add to cart
             </Button>
             <Divider variant="middle" className={classes.divider} />
-            <Typography gutterBottom variant="h6" className={classes.title}>
+            <Typography gutterBottom variant="h5" className={classes.title}>
               Product description
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">

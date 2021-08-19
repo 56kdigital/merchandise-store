@@ -105,14 +105,15 @@ export default function GridItem({ product }) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={(e) => history.push(navigateUrl, { category: product.category })}>
+      <CardActionArea onClick={(e) => {history.push(navigateUrl, { category: product.category });
+        dataLayerProductClick(product, navigateUrl)}}>
         <CardMedia className={classes.media} image={product.image} title={product.title} alt={product.title} />
         <CardContent>
-          <Typography className={classes.title} variant="subtitle1">
+          <Typography className={classes.title} variant="h5">
             {product.title}
           </Typography>
           <div className={classes.footer}>
-            <Typography gutterBottom variant="h6" className={classes.price}>
+            <Typography gutterBottom variant="h5" className={classes.price}>
               $ {product.price}
             </Typography>
           </div>
