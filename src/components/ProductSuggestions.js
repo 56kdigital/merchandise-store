@@ -14,30 +14,34 @@ const useStyles = makeStyles((theme) => ({
 export default function ProductSuggestions({ products }) {
   const classes = useStyles();
 
-  function productList(products) {
+  useEffect(() => {
+    dataLayerProductImpression(products);
+  }, [products]);
+
+
+  const dataLayerProductImpression = (products) => {
+
     let counter = 1
-    const productMap = products.map((product) => (
+    const productObject = products.map((product) => (
       {"name": product.title,
        "id": product.id,
        "price": product.price,
        "category": product.category,
-       "list": "Home Page",
+       "list": "",
        "position": counter++
       }
     ))
 
-    return productMap
-  }
-
-  useEffect(() => {
     window.dataLayer.push({ ecommerce: null });
     window.dataLayer.push({
       "ecommerce": {
         "currencyCode": "USD",
-        "impressions": [productList(products)]
+        "impressions": [productObject]
       }
     });
-  }, [products]);
+    console.log("DataLayerProductImpression injected")
+    return ""
+    }
 
   return (
     <div className={classes.container}>

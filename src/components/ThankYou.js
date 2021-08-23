@@ -55,10 +55,10 @@ function CartItem({ product }) {
         <Typography gutterBottom variant="h6">
           {product.title}
         </Typography>
-        <Typography gutterBottom variant="subtitle1" color="secondary">
+        <Typography gutterBottom variant="subtitle1">
           $ {product.price}
         </Typography>
-        <Typography gutterBottom variant="subtitle1" color="secondary">
+        <Typography gutterBottom variant="subtitle1">
           Quantity: {product.quantity}
         </Typography>
       </Grid>
@@ -92,7 +92,7 @@ function CartList({ products, cart }) {
         </Grid>
         <Grid item xs={12} sm={12}>
           <Paper elevation={3} className={classes.paper}>
-            <Typography gutterBottom variant="subtitle1" color="primary">
+            <Typography gutterBottom variant="subtitle1">
               TOTAL: $ {total}
             </Typography>
           </Paper>
@@ -169,7 +169,7 @@ export default function ThankYou() {
     )}
     <Container maxWidth="sm">
       <Paper elevation={3} className={classes.paper}>
-        <Typography variant="subtitle1" color="primary">
+        <Typography variant="subtitle1">
           Thank you for placing your order{" "}
           <span role="img" description="aria-label">
             {" "}

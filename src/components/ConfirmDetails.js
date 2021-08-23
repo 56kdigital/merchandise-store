@@ -53,10 +53,10 @@ function CartItem({ product }) {
         <Typography gutterBottom variant="h6">
           {product.title}
         </Typography>
-        <Typography gutterBottom variant="subtitle1" color="secondary">
+        <Typography gutterBottom variant="subtitle1">
           $ {product.price}
         </Typography>
-        <Typography gutterBottom variant="subtitle1" color="secondary">
+        <Typography gutterBottom variant="subtitle1">
           Quantity: {product.quantity}
         </Typography>
       </Grid>
@@ -90,7 +90,7 @@ function CartList({ products, cart }) {
         </Grid>
         <Grid item xs={12} sm={12}>
           <Paper elevation={3} className={classes.paper}>
-            <Typography gutterBottom variant="subtitle1" color="primary">
+            <Typography gutterBottom variant="subtitle1">
               TOTAL: $ {total}
             </Typography>
           </Paper>
@@ -135,13 +135,13 @@ export default function ConfirmDetails({ state }) {
         "event": "checkout",
         "ecommerce": {
           "checkout": {
-            "actionField": {"step": 3},
+            "actionField": {"step": 2},
             'products': [productObject]
         }
       }
       });
     }
-    console.log("DataLayerCheckoutStep 3 injected in UserForm.js")
+    console.log("DataLayerCheckoutStep 2 injected in UserForm.js")
     return ""
   }
 
@@ -159,26 +159,26 @@ export default function ConfirmDetails({ state }) {
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6">Personal Details</Typography>
             <div>
-              <Typography variant="subtitle1" color="primary" display="inline">
+              <Typography variant="subtitle1" display="inline">
                 First Name:
               </Typography>
-              <Typography variant="subtitle1" color="secondary" display="inline" className={classes.text}>
+              <Typography variant="subtitle1" display="inline" className={classes.text}>
                 {firstName}
               </Typography>
             </div>
             <div>
-              <Typography variant="subtitle1" color="primary" display="inline">
+              <Typography variant="subtitle1" display="inline">
                 Last Name:
               </Typography>
-              <Typography variant="subtitle1" color="secondary" display="inline" className={classes.text}>
+              <Typography variant="subtitle1" display="inline" className={classes.text}>
                 {lastName ? lastName : "-NA-"}
               </Typography>
             </div>
             <div>
-              <Typography variant="subtitle1" color="primary" display="inline">
+              <Typography variant="subtitle1" display="inline">
                 Email:
               </Typography>
-              <Typography variant="subtitle1" color="secondary" display="inline" className={classes.text}>
+              <Typography variant="subtitle1" display="inline" className={classes.text}>
                 {email}
               </Typography>
             </div>
@@ -188,26 +188,26 @@ export default function ConfirmDetails({ state }) {
           <Paper elevation={3} className={classes.paper}>
             <Typography variant="h6">Shipping Address</Typography>
             <div>
-              <Typography variant="subtitle1" color="primary" display="inline">
+              <Typography variant="subtitle1" display="inline">
                 Address:
               </Typography>
-              <Typography variant="subtitle1" color="secondary" display="inline" className={classes.text}>
+              <Typography variant="subtitle1" display="inline" className={classes.text}>
                 {address}
               </Typography>
             </div>
             <div>
-              <Typography variant="subtitle1" color="primary" display="inline">
+              <Typography variant="subtitle1" display="inline">
                 City:
               </Typography>
-              <Typography variant="subtitle1" color="secondary" display="inline" className={classes.text}>
+              <Typography variant="subtitle1" display="inline" className={classes.text}>
                 {city}
               </Typography>
             </div>
             <div>
-              <Typography variant="subtitle1" color="primary" display="inline">
+              <Typography variant="subtitle1" display="inline">
                 Zipcode:
               </Typography>
-              <Typography variant="subtitle1" color="secondary" display="inline" className={classes.text}>
+              <Typography variant="subtitle1" display="inline" className={classes.text}>
                 {zipcode}
               </Typography>
             </div>

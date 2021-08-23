@@ -48,7 +48,6 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonClear: {
     marginTop: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.light,
     float: "right",
   },
 }));
@@ -65,10 +64,10 @@ function CartItem({ product }) {
         <Typography gutterBottom variant="h6">
           {product.title}
         </Typography>
-        <Typography gutterBottom variant="subtitle1" color="secondary">
+        <Typography gutterBottom variant="subtitle1">
           $ {product.price}
         </Typography>
-        <Typography gutterBottom variant="subtitle1" color="secondary">
+        <Typography gutterBottom variant="subtitle1">
           Quantity: {product.quantity}
         </Typography>
       </Grid>
@@ -102,7 +101,7 @@ function CartList({ products, cart, handleClose, clearAll }) {
   };
   return (
     <Container maxWidth="lg">
-      <Typography color="secondary" variant="h6">
+      <Typography variant="h6">
         ITEMS IN CART {updatedProducts.length}
       </Typography>
       <Grid container spacing={3}>
@@ -115,7 +114,7 @@ function CartList({ products, cart, handleClose, clearAll }) {
         </Grid>
         <Grid item xs={12} sm={4}>
           <Paper elevation={3} className={classes.paper}>
-            <Typography gutterBottom variant="subtitle1" color="primary">
+            <Typography gutterBottom variant="subtitle1">
               TOTAL: $ {total}
             </Typography>
             <Button
@@ -148,7 +147,7 @@ export default function Cart({ open, handleClose }) {
   const { response: products, loading } = useSelectedProducts(cart);
   return (
     <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
-      <AppBar className={classes.appBar}>
+      <AppBar className={classes.appBar} color="inherit">
         <Toolbar>
           <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
             <CloseIcon />

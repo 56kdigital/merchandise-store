@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import { CardMedia } from "@material-ui/core";
+import { CardMedia, Container } from "@material-ui/core";
 import CardContent from "@material-ui/core/CardContent";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Typography from "@material-ui/core/Typography";
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
   },
   media: {
-    height: 300,
+    height: 200,
     width: 300,
     marginLeft: "auto",
     marginRight: "auto",
@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     textOverflow: "ellipsis",
   },
   price: {
-    color: theme.palette.secondary.main,
     position: "relative",
     top: theme.spacing(2),
   },
@@ -41,8 +40,9 @@ const useStyles = makeStyles((theme) => ({
   },
   cartButton: {
     position: "relative",
-    left: 204,
-    bottom: 4,
+    left: 238,
+    bottom: 6,
+    padding: theme.spacing(2),
   },
 }));
 
@@ -105,8 +105,7 @@ export default function GridItem({ product }) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea onClick={(e) => {history.push(navigateUrl, { category: product.category });
-        dataLayerProductClick(product, navigateUrl)}}>
+      <CardActionArea onClick={(e) => {dataLayerProductClick(product, navigateUrl); history.push(navigateUrl, { category: product.category })}}>
         <CardMedia className={classes.media} image={product.image} title={product.title} alt={product.title} />
         <CardContent>
           <Typography className={classes.title} variant="h5">
@@ -119,10 +118,15 @@ export default function GridItem({ product }) {
           </div>
         </CardContent>
       </CardActionArea>
-      <Fab color="secondary" aria-label="cart" className={classes.cartButton}>
-        <ShoppingCartIcon onClick={(e) => {addCart(e);
-          dataLayerAddToCart(product)}} />
-      </Fab>
+      <Fab 
+        color="secondary" 
+        aria-label="cart" 
+        className={classes.cartButton}
+        onClick={(e) => {addCart(e);
+          dataLayerAddToCart(product)}}
+        >
+        <ShoppingCartIcon  />
+      </Fab>      
     </Card>
   );
 }

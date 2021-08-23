@@ -17,10 +17,10 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    textDecoration: 'none',
   },
   logo: {
     textDecoration: "none",
-    color: theme.palette.secondary.main,
   },
 }));
 
@@ -37,12 +37,10 @@ export default function Navbar() {
   };
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" color="inherit">
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            <Link className={classes.logo} to="/">
+          <Typography component={Link} to="/" variant="h6" className={classes.title} color="inherit">
               56K Merchandise Store
-            </Link>
           </Typography>
           <div>
             <IconButton

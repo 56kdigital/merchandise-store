@@ -24,10 +24,8 @@ const useStyles = makeStyles((theme) => ({
     width: 400,
     marginLeft: "auto",
     marginRight: "auto",
+    padding: theme.spacing(6),
     display: "block",
-  },
-  price: {
-    color: theme.palette.secondary.dark,
   },
   condition: {
     fontSize: "8px",
@@ -44,9 +42,10 @@ const useStyles = makeStyles((theme) => ({
   },
   releated: {
     marginTop: theme.spacing(2),
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.secondary.main,
     padding: theme.spacing(1),
+  },
+  contentArea: {
+    padding: theme.spacing(4),
   },
 }));
 
@@ -135,17 +134,17 @@ export default function Product() {
   }
 
   return (
-    <Container maxWidth={false}>
+    <Container maxWidth="lg">
       <Paper elevation={3} className={classes.paper}>
         <Grid container>
           <Grid item xs={6}>
             <img className={classes.media} src={product.image} alt={product.name} />
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={6} className={classes.contentArea}>
             <Typography gutterBottom variant="h5" className={classes.title}>
               {product.title}
             </Typography>
-            <Typography gutterBottom variant="h5" className={classes.price}>
+            <Typography gutterBottom variant="h5">
               $ {product.price} <span className={classes.condition}>(Incuding taxes)</span>
             </Typography>
             <Button
@@ -168,7 +167,7 @@ export default function Product() {
           </Grid>
         </Grid>
       </Paper>
-      <Typography variant="h5" className={classes.releated}>
+      <Typography variant="h5" className={classes.releated} color="inherit">
         Related products
       </Typography>
       <Container maxWidth={false}>

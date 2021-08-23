@@ -7,10 +7,10 @@ import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import CartContext from "../context/cart";
 
-import UserForm from "../components/UserForm";
 import ShippingForm from "../components/ShippingForm";
 import ConfirmDetails from "../components/ConfirmDetails";
 import ThankYou from "../components/ThankYou";
+import createPalette from "@material-ui/core/styles/createPalette";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,17 +31,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ["Enter personal details", "Shipping Address", "Confirm details", "Thank you"];
+  return ["Shipping Details", "Confirm details", "Thank you"];
 }
 function getStepContent(step, handleChange, state) {
   switch (step) {
     case 0:
-      return <UserForm handleChange={handleChange} state={state} />;
-    case 1:
       return <ShippingForm handleChange={handleChange} state={state} />;
-    case 2:
+    case 1:
       return <ConfirmDetails state={state} />;
-    case 3:
+    case 2:
       return <ThankYou state={state} />;
     default:
       return "Unknown step";

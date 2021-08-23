@@ -28,18 +28,51 @@ export default function ShippingForm({ state, handleChange }) {
         "event": "checkout",
         "ecommerce": {
           "checkout": {
-            "actionField": {"step": 2}
+            "actionField": {"step": 1}
         }
       }
       });
     }
-    console.log("DataLayerCheckoutStep 2 injected in UserForm.js")
+    console.log("DataLayerCheckoutStep 1 injected in UserForm.js")
   }
 
-  const { address, city, zipcode } = state;
+  const { firstName, lastName, email, address, city, zipcode } = state;
   return (
     <Container maxWidth="sm">
       <Grid container spacing={3}>
+      <Grid item xs={12} sm={12}>
+          <TextField
+            label="First Name"
+            id="firstName"
+            value={firstName}
+            variant="outlined"
+            size="small"
+            onChange={(e) => handleChange({ name: "firstName", value: e.target.value })}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <TextField
+            label="Last Name"
+            id="lastName"
+            value={lastName}
+            variant="outlined"
+            size="small"
+            onChange={(e) => handleChange({ name: "lastName", value: e.target.value })}
+            fullWidth
+          />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <TextField
+            label="Email"
+            id="email"
+            value={email}
+            variant="outlined"
+            size="small"
+            onChange={(e) => handleChange({ name: "email", value: e.target.value })}
+            fullWidth
+          />
+        </Grid>
         <Grid item xs={12} sm={12}>
           <TextField
             label="Address"
